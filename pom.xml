@@ -5,7 +5,7 @@
   <artifactId>assertj-time</artifactId>
   <version>1.2.0-SNAPSHOT</version>
   <name>AssertJ fluent assertions for Java Time</name>
-  <url>https://github.com/joel-costigliola/assertj-joda-time</url>
+  <url>https://github.com/jschneider/assertj-time</url>
   
   <parent>
     <groupId>org.assertj</groupId>
