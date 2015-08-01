@@ -21,7 +21,7 @@
   
   <issueManagement>
     <system>github</system>
-    <url>https://github.com/joel-costigliola/assertj-joda-time/issues</url>
+    <url>https://github.com/jschneider/assertj-time/issues</url>
   </issueManagement>
   
   <dependencies>
