@@ -14,9 +14,9 @@
   </parent>
   
   <scm>
-    <developerConnection>scm:git:git@github.com:joel-costigliola/assertj-joda-time.git</developerConnection>
-    <connection>scm:git:git@github.com:joel-costigliola/assertj-joda-time.git</connection>
-    <url>git@github.com:joel-costigliola/assertj-joda-time</url>
+    <developerConnection>scm:git:git@github.com:jschneider/assertj-time.git</developerConnection>
+    <connection>scm:git:git@github.com:jschneider/assertj-time.git</connection>
+    <url>https://github.com/jschneider/assertj-time.git</url>
   </scm>
   
   <issueManagement>
