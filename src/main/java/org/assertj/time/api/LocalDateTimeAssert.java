@@ -21,11 +21,11 @@ import static org.assertj.time.error.ShouldBeEqualIgnoringMillis.shouldBeEqualIg
 import static org.assertj.time.error.ShouldBeEqualIgnoringMinutes.shouldBeEqualIgnoringMinutes;
 import static org.assertj.time.error.ShouldBeEqualIgnoringSeconds.shouldBeEqualIgnoringSeconds;
 
-import org.joda.time.LocalDateTime;
-
 import org.assertj.core.api.AbstractAssert;
 import org.assertj.core.internal.Failures;
 import org.assertj.core.internal.Objects;
+
+import java.time.LocalDateTime;
 
 /**
  * Assertions fot Joda {@link LocalDateTime} type.
@@ -99,7 +99,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    */
   public LocalDateTimeAssert isBefore(String localDateTimeAsString) {
     assertLocalDateTimeAsStringParameterIsNotNull(localDateTimeAsString);
-    return isBefore(new LocalDateTime(localDateTimeAsString));
+    return isBefore(LocalDateTime.parse(localDateTimeAsString));
   }
 
   /**
@@ -151,7 +151,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    */
   public LocalDateTimeAssert isBeforeOrEqualTo(String localDateTimeAsString) {
     assertLocalDateTimeAsStringParameterIsNotNull(localDateTimeAsString);
-    return isBeforeOrEqualTo(new LocalDateTime(localDateTimeAsString));
+    return isBeforeOrEqualTo(LocalDateTime.parse(localDateTimeAsString));
   }
 
   /**
@@ -203,7 +203,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    */
   public LocalDateTimeAssert isAfterOrEqualTo(String localDateTimeAsString) {
     assertLocalDateTimeAsStringParameterIsNotNull(localDateTimeAsString);
-    return isAfterOrEqualTo(new LocalDateTime(localDateTimeAsString));
+    return isAfterOrEqualTo( LocalDateTime.parse(localDateTimeAsString));
   }
 
   /**
@@ -253,7 +253,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    */
   public LocalDateTimeAssert isAfter(String localDateTimeAsString) {
     assertLocalDateTimeAsStringParameterIsNotNull(localDateTimeAsString);
-    return isAfter(new LocalDateTime(localDateTimeAsString));
+    return isAfter(LocalDateTime.parse(localDateTimeAsString));
   }
 
   /**
@@ -279,7 +279,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    */
   public LocalDateTimeAssert isEqualTo(String dateTimeAsString) {
     assertLocalDateTimeAsStringParameterIsNotNull(dateTimeAsString);
-    return isEqualTo(new LocalDateTime(dateTimeAsString));
+    return isEqualTo( LocalDateTime.parse(dateTimeAsString));
   }
 
   /**
@@ -305,7 +305,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    */
   public LocalDateTimeAssert isNotEqualTo(String dateTimeAsString) {
     assertLocalDateTimeAsStringParameterIsNotNull(dateTimeAsString);
-    return isNotEqualTo(new LocalDateTime(dateTimeAsString));
+    return isNotEqualTo(LocalDateTime.parse(dateTimeAsString));
   }
 
   /**
@@ -363,7 +363,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
   private static Object[] convertToLocalDateTimeArray(String... dateTimesAsString) {
     LocalDateTime[] dates = new LocalDateTime[dateTimesAsString.length];
     for (int i = 0; i < dateTimesAsString.length; i++) {
-      dates[i] = new LocalDateTime(dateTimesAsString[i]);
+      dates[i] = LocalDateTime.parse(dateTimesAsString[i]);
     }
     return dates;
   }
@@ -573,7 +573,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    *         otherwise.
    */
   private static boolean areEqualIgnoringMillis(LocalDateTime actual, LocalDateTime other) {
-    return areEqualIgnoringSeconds(actual, other) && actual.getSecondOfMinute() == other.getSecondOfMinute();
+    return areEqualIgnoringSeconds(actual, other) && actual.getSecond() == other.getSecond();
   }
 
   /**
@@ -584,7 +584,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * @return true if both datetime are in the same year, month, day of month, hour and minute, false otherwise.
    */
   private static boolean areEqualIgnoringSeconds(LocalDateTime actual, LocalDateTime other) {
-    return areEqualIgnoringMinutes(actual, other) && actual.getMinuteOfHour() == other.getMinuteOfHour();
+    return areEqualIgnoringMinutes(actual, other) && actual.getMinute() == other.getMinute();
   }
 
   /**
@@ -595,7 +595,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * @return true if both datetime are in the same year, month, day of month and hour, false otherwise.
    */
   private static boolean areEqualIgnoringMinutes(LocalDateTime actual, LocalDateTime other) {
-    return haveSameYearMonthAndDayOfMonth(actual, other) && actual.getHourOfDay() == other.getHourOfDay();
+    return haveSameYearMonthAndDayOfMonth(actual, other) && actual.getHour() == other.getHour();
   }
 
   /**
@@ -617,7 +617,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * @return true if both datetime are in the same year and month, false otherwise
    */
   private static boolean haveSameYearAndMonth(LocalDateTime actual, LocalDateTime other) {
-    return haveSameYear(actual, other) && actual.getMonthOfYear() == other.getMonthOfYear();
+    return haveSameYear(actual, other) && actual.getMonth() == other.getMonth();
   }
 
   /**
