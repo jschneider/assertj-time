@@ -23,8 +23,8 @@ import org.joda.time.LocalDateTime;
  */
 public class Assertions {
 
-  public static DateTimeAssert assertThat(DateTime date) {
-    return new DateTimeAssert(DateTimeAssert.class, date);
+  public static ZonedDateTimeAssert assertThat( DateTime date) {
+    return new ZonedDateTimeAssert( ZonedDateTimeAssert.class, date);
   }
 
   public static LocalDateTimeAssert assertThat(LocalDateTime localDateTime) {

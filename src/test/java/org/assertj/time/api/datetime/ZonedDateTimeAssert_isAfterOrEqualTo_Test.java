@@ -31,7 +31,7 @@ import org.junit.runner.RunWith;
  * @author Joel Costigliola
  */
 @RunWith(Theories.class)
-public class DateTimeAssert_isAfterOrEqualTo_Test extends DateTimeAssertBaseTest {
+public class ZonedDateTimeAssert_isAfterOrEqualTo_Test extends DateTimeAssertBaseTest {
 
   @Theory
   public void test_isAfterOrEqual_assertion(DateTime referenceDate, DateTime dateBefore, DateTime dateAfter) {

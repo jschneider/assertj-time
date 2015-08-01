@@ -22,36 +22,37 @@ import org.joda.time.LocalDateTime;
 import org.junit.Test;
 
 
-public class LocalDateTimeAssert_isEqualToIgnoringMinutes_Test extends JodaTimeBaseTest {
+public class LocalZonedDateTimeAssert_isEqualToIgnoringMilliseconds_Test extends JodaTimeBaseTest {
 
-  private final LocalDateTime refLocalDateTime = new LocalDateTime(2000, 1, 1, 23, 0, 0, 0);
+  private final LocalDateTime refLocalDateTime = new LocalDateTime(2000, 1, 1, 0, 0, 1, 0);
 
   @Test
-  public void should_pass_if_actual_is_equal_to_other_ignoring_minute_fields() {
-    assertThat(refLocalDateTime).isEqualToIgnoringMinutes(refLocalDateTime.plusMinutes(1));
+  public void should_pass_if_actual_is_equal_to_other_ignoring_millisecond_fields() {
+    assertThat(refLocalDateTime).isEqualToIgnoringMillis(refLocalDateTime.millisOfSecond().setCopy(55));
+    assertThat(refLocalDateTime).isEqualToIgnoringMillis(refLocalDateTime.plusMillis(1));
   }
 
   @Test
-  public void should_fail_if_actual_is_not_equal_to_given_localdatetime_with_minute_ignored() {
+  public void should_fail_if_actual_is_not_equal_to_given_localdatetime_with_milliseconds_ignored() {
     try {
-      assertThat(refLocalDateTime).isEqualToIgnoringMinutes(refLocalDateTime.minusMinutes(1));
+      assertThat(refLocalDateTime).isEqualToIgnoringMillis(refLocalDateTime.plusSeconds(1));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
           .isEqualTo(
-              "\nExpecting:\n  <2000-01-01T23:00:00.000>\nto have same year, month, day and hour as:\n  <2000-01-01T22:59:00.000>\nbut had not.");
+              "\nExpecting:\n  <2000-01-01T00:00:01.000>\nto have same year, month, day, hour, minute and second as:\n  <2000-01-01T00:00:02.000>\nbut had not.");
       return;
     }
     failBecauseExpectedAssertionErrorWasNotThrown();
   }
 
   @Test
-  public void should_fail_as_minutes_fields_are_different_even_if_time_difference_is_less_than_a_minute() {
+  public void should_fail_as_seconds_fields_are_different_even_if_time_difference_is_less_than_a_second() {
     try {
-      assertThat(refLocalDateTime).isEqualToIgnoringMinutes(refLocalDateTime.minusMillis(1));
+      assertThat(refLocalDateTime).isEqualToIgnoringMillis(refLocalDateTime.minusMillis(1));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
           .isEqualTo(
-              "\nExpecting:\n  <2000-01-01T23:00:00.000>\nto have same year, month, day and hour as:\n  <2000-01-01T22:59:59.999>\nbut had not.");
+              "\nExpecting:\n  <2000-01-01T00:00:01.000>\nto have same year, month, day, hour, minute and second as:\n  <2000-01-01T00:00:00.999>\nbut had not.");
       return;
     }
     failBecauseExpectedAssertionErrorWasNotThrown();
@@ -61,13 +62,13 @@ public class LocalDateTimeAssert_isEqualToIgnoringMinutes_Test extends JodaTimeB
   public void should_fail_if_actual_is_null() {
     expectException(AssertionError.class, actualIsNull());
     LocalDateTime actual = null;
-    assertThat(actual).isEqualToIgnoringMinutes(new LocalDateTime());
+    assertThat(actual).isEqualToIgnoringMillis(new LocalDateTime());
   }
 
   @Test
   public void should_throw_error_if_given_localdatetime_is_null() {
     expectIllegalArgumentException(NULL_LOCAL_DATE_TIME_PARAMETER_MESSAGE);
-    assertThat(refLocalDateTime).isEqualToIgnoringMinutes(null);
+    assertThat(refLocalDateTime).isEqualToIgnoringMillis(null);
   }
 
 }

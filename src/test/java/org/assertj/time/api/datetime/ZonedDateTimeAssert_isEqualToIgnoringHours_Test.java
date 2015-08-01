@@ -15,7 +15,7 @@ package org.assertj.time.api.datetime;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
-import static org.assertj.time.api.DateTimeAssert.NULL_DATE_TIME_PARAMETER_MESSAGE;
+import static org.assertj.time.api.ZonedDateTimeAssert.NULL_DATE_TIME_PARAMETER_MESSAGE;
 import static org.assertj.time.api.Assertions.assertThat;
 
 import static org.joda.time.DateTimeZone.UTC;
@@ -27,7 +27,7 @@ import org.joda.time.DateTimeZone;
 import org.junit.Test;
 
 
-public class DateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBaseTest {
+public class ZonedDateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBaseTest {
 
   private final DateTime refDatetime = new DateTime(2000, 1, 2, 0, 0, 0, 0, UTC);
 

@@ -14,14 +14,14 @@ package org.assertj.time.api.datetime;
 
 import static org.junit.Assume.assumeTrue;
 
-import org.assertj.time.api.DateTimeAssert;
+import org.assertj.time.api.ZonedDateTimeAssert;
 import org.assertj.time.api.JodaTimeBaseTest;
 import org.joda.time.DateTime;
 import org.junit.experimental.theories.DataPoint;
 
 
 /**
- * Base test class for {@link DateTimeAssert} tests.
+ * Base test class for {@link ZonedDateTimeAssert} tests.
  * 
  * @author Paweł Stawicki
  * @author Joel Costigliola

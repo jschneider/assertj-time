@@ -27,14 +27,14 @@ public class Assertions_assertThat_with_DateTime_Test {
 
   @Test
   public void should_create_Assert() {
-    DateTimeAssert assertions = Assertions.assertThat(new DateTime());
+    ZonedDateTimeAssert assertions = Assertions.assertThat( new DateTime());
     assertNotNull(assertions);
   }
 
   @Test
   public void should_pass_actual() {
     DateTime dateTime = new DateTime();
-    DateTimeAssert assertions = Assertions.assertThat(dateTime);
+    ZonedDateTimeAssert assertions = Assertions.assertThat( dateTime);
     assertSame(dateTime, assertions.getActual());
   }
 }

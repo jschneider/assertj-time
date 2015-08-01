@@ -19,7 +19,7 @@ import org.junit.experimental.theories.DataPoint;
 
 /**
  * 
- * Base test class for {@link DateTimeAssert} tests.
+ * Base test class for {@link ZonedDateTimeAssert} tests.
  * 
  * @author Joel Costigliola
  * 

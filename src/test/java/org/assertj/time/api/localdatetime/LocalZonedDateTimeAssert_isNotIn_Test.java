@@ -28,38 +28,45 @@ import org.junit.runner.RunWith;
  * @author Joel Costigliola
  */
 @RunWith(Theories.class)
-public class LocalDateTimeAssert_isNotEqualTo_Test extends LocalDateTimeAssertBaseTest {
+public class LocalZonedDateTimeAssert_isNotIn_Test extends LocalDateTimeAssertBaseTest {
 
   @Theory
-  public void test_isNotEqualTo_assertion(LocalDateTime referenceDate) {
+  public void test_isNotIn_assertion(LocalDateTime referenceDate) {
     // WHEN
-    assertThat(referenceDate).isNotEqualTo(referenceDate.plusDays(1).toString());
+    assertThat(referenceDate).isNotIn(referenceDate.plusDays(1).toString(), referenceDate.plusDays(2).toString());
     // THEN
-    verify_that_isNotEqualTo_assertion_fails_and_throws_AssertionError(referenceDate);
+    verify_that_isNotIn_assertion_fails_and_throws_AssertionError(referenceDate);
   }
 
   @Test
-  public void test_isNotEqualTo_assertion_error_message() {
+  public void test_isNotIn_assertion_error_message() {
     try {
-      assertThat(new LocalDateTime(2000, 1, 5, 3, 0, 5))
-          .isNotEqualTo(new LocalDateTime(2000, 1, 5, 3, 0, 5).toString());
+      assertThat(new LocalDateTime(2000, 1, 5, 3, 0, 5)).isNotIn(new LocalDateTime(2000, 1, 5, 3, 0, 5).toString(),
+          new LocalDateTime(2012, 1, 1, 3, 3, 3).toString());
     } catch (AssertionError e) {
-      assertThat(e).hasMessage("\nExpecting:\n <2000-01-05T03:00:05.000>\nnot to be equal to:\n <2000-01-05T03:00:05.000>\n");
+      assertThat(e)
+          .hasMessage(
+              "\nExpecting:\n <2000-01-05T03:00:05.000>\nnot to be in:\n <[2000-01-05T03:00:05.000, 2012-01-01T03:03:03.000]>\n");
       return;
     }
     fail("Should have thrown AssertionError");
   }
 
   @Test
-  public void should_fail_if_dateTime_as_string_parameter_is_null() {
-    expectException(IllegalArgumentException.class,
-        "The String representing the LocalDateTime to compare actual with should not be null");
-    assertThat(new LocalDateTime()).isNotEqualTo((String) null);
+  public void should_fail_if_dateTimes_as_string_array_parameter_is_null() {
+    expectException(IllegalArgumentException.class, "The given LocalDateTime array should not be null");
+    assertThat(new LocalDateTime()).isNotIn((String[]) null);
   }
 
-  private static void verify_that_isNotEqualTo_assertion_fails_and_throws_AssertionError(LocalDateTime reference) {
+  @Test
+  public void should_fail_if_dateTimes_as_string_array_parameter_is_empty() {
+    expectException(IllegalArgumentException.class, "The given LocalDateTime array should not be empty");
+    assertThat(new LocalDateTime()).isNotIn(new String[0]);
+  }
+
+  private static void verify_that_isNotIn_assertion_fails_and_throws_AssertionError(LocalDateTime reference) {
     try {
-      assertThat(reference).isNotEqualTo(reference.toString());
+      assertThat(reference).isNotIn(reference.toString(), reference.plusDays(1).toString());
     } catch (AssertionError e) {
       // AssertionError was expected
       return;

@@ -12,6 +12,7 @@
  */
 package org.assertj.time.api.datetime;
 
+import org.assertj.time.api.ZonedDateTimeAssert;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.junit.Test;
@@ -19,12 +20,12 @@ import org.junit.Test;
 import static org.assertj.time.api.Assertions.assertThat;
 
 /**
- * Tests specific to {@link org.assertj.time.api.DateTimeAssert#isNotEqualTo(org.joda.time.DateTime)} that can't be
+ * Tests specific to {@link ZonedDateTimeAssert#isNotEqualTo(org.joda.time.DateTime)} that can't be
  * done in {@link org.assertj.core.api.AbstractAssert#isNotEqualTo(Object)} tests.
  * 
  * @author Joel Costigliola
  */
-public class DateTimeAssert_isNotEqualTo_Test extends DateTimeAssertBaseTest {
+public class ZonedDateTimeAssert_isNotEqualTo_Test extends DateTimeAssertBaseTest {
 
   @Test
   public void isNotEqualTo_should_compare_datetimes_in_actual_timezone() {
