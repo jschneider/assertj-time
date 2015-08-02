@@ -14,10 +14,10 @@ package org.assertj.time.error;
 
 import org.assertj.core.error.BasicErrorMessageFactory;
 import org.assertj.core.error.ErrorMessageFactory;
-import org.joda.time.DateTime;
+import java.time.ZonedDateTime;
 
 /**
- * Creates an error message indicating that an assertion that verifies that two {@link DateTime} have same year, month,
+ * Creates an error message indicating that an assertion that verifies that two {@link ZonedDateTime} have same year, month,
  * day, hour, minute and second failed.
  * 
  * @author Joel Costigliola

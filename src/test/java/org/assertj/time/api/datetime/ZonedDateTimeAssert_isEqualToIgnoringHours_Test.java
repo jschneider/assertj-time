@@ -12,24 +12,24 @@
  */
 package org.assertj.time.api.datetime;
 
+import org.assertj.time.api.JodaTimeBaseTest;
+import org.junit.*;
+
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
-import static org.assertj.time.api.ZonedDateTimeAssert.NULL_DATE_TIME_PARAMETER_MESSAGE;
 import static org.assertj.time.api.Assertions.assertThat;
-
-import static org.joda.time.DateTimeZone.UTC;
-
-import org.assertj.time.api.JodaTimeBaseTest;
-
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import org.junit.Test;
+import static org.assertj.time.api.ZonedDateTimeAssert.NULL_DATE_TIME_PARAMETER_MESSAGE;
 
 
 public class ZonedDateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBaseTest {
 
-  private final DateTime refDatetime = new DateTime(2000, 1, 2, 0, 0, 0, 0, UTC);
+  private final ZonedDateTime refDatetime = ZonedDateTime.of(2000, 1, 2, 0, 0, 0, 0, ZoneOffset.UTC);
 
   @Test
   public void should_pass_if_actual_is_equal_to_other_ignoring_hours() {
@@ -38,15 +38,15 @@ public class ZonedDateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBas
   
   @Test
   public void should_pass_if_actual_is_equal_to_other_ignoring_hours_in_different_timezone() {
-    DateTime utcDateTime = new DateTime(2013, 6, 10, 0, 0, DateTimeZone.UTC);
-    DateTimeZone cestTimeZone = DateTimeZone.forID("Europe/Berlin");
-    // utcDateTime = new DateTime(2013, 6, 10, 2, 0, cestTimeZone)  
-    assertThat(utcDateTime).isEqualToIgnoringHours(new DateTime(2013, 6, 10, 5, 0, cestTimeZone));
-    // new DateTime(2013, 6, 11, 1, 0, cestTimeZone) =  DateTime(2013, 6, 10, 23, 0, DateTimeZone.UTC)
-    assertThat(utcDateTime).isEqualToIgnoringHours(new DateTime(2013, 6, 11, 1, 0, cestTimeZone));
+    ZonedDateTime utcDateTime = ZonedDateTime.of(2013, 6, 10, 0, 0, 0, 0, ZoneOffset.UTC);
+    ZoneId cestTimeZone = ZoneId.of("Europe/Berlin");
+    // utcDateTime = ZonedDateTime.of(2013, 6, 10, 2, 0, cestTimeZone)
+    assertThat(utcDateTime).isEqualToIgnoringHours(ZonedDateTime.of(2013, 6, 10, 5, 0, 0, 0, cestTimeZone));
+    // ZonedDateTime.of(2013, 6, 11, 1, 0, cestTimeZone) =  ZonedDateTime(2013, 6, 10, 23, 0, ZoneOffset.UTC)
+    assertThat(utcDateTime).isEqualToIgnoringHours(ZonedDateTime.of(2013, 6, 11, 1, 0, 0, 0, cestTimeZone));
     try {
-      // DateTime(2013, 6, 10, 0, 0, cestTimeZone) =  DateTime(2013, 6, 9, 22, 0, DateTimeZone.UTC) 
-      assertThat(utcDateTime).isEqualToIgnoringHours(new DateTime(2013, 6, 10, 0, 0, cestTimeZone));
+      // ZonedDateTime(2013, 6, 10, 0, 0, cestTimeZone) =  ZonedDateTime(2013, 6, 9, 22, 0, ZoneOffset.UTC)
+      assertThat(utcDateTime).isEqualToIgnoringHours(ZonedDateTime.of(2013, 6, 10, 0, 0, 0, 0, cestTimeZone));
     } catch (AssertionError e) {
       return;
     }
@@ -69,7 +69,7 @@ public class ZonedDateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBas
   @Test
   public void should_fail_as_hours_fields_are_different_even_if_time_difference_is_less_than_a_hour() {
     try {
-      assertThat(refDatetime).isEqualToIgnoringHours(refDatetime.minusMillis(1));
+      assertThat(refDatetime).isEqualToIgnoringHours(refDatetime.minus(1, ChronoUnit.MILLIS));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
           .isEqualTo(
@@ -82,8 +82,8 @@ public class ZonedDateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBas
   @Test
   public void should_fail_if_actual_is_null() {
     expectException(AssertionError.class, actualIsNull());
-    DateTime actual = null;
-    assertThat(actual).isEqualToIgnoringHours(new DateTime());
+    ZonedDateTime actual = null;
+    assertThat(actual).isEqualToIgnoringHours(ZonedDateTime.now());
   }
 
   @Test

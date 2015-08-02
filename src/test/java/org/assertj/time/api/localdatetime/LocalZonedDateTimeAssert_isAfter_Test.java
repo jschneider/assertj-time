@@ -17,13 +17,15 @@ import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.time.api.Assertions.assertThat;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
+
+import java.time.LocalDateTime;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
+
+import java.time.ZonedDateTime;
 
 /**
  * @author Paweł Stawicki
@@ -47,7 +49,7 @@ public class LocalZonedDateTimeAssert_isAfter_Test extends LocalDateTimeAssertBa
   @Test
   public void test_isAfter_assertion_error_message() {
     try {
-      assertThat(new LocalDateTime(2000, 1, 5, 3, 0, 5)).isAfter(new LocalDateTime(2012, 1, 1, 3, 3, 3));
+      assertThat(LocalDateTime.of(2000, 1, 5, 3, 0, 5)).isAfter(LocalDateTime.of(2012, 1, 1, 3, 3, 3));
     } catch (AssertionError e) {
       assertThat(e).hasMessage("\nExpecting:\n  <2000-01-05T03:00:05.000>\nto be strictly after:\n  <2012-01-01T03:03:03.000>\n");
       return;
@@ -59,20 +61,20 @@ public class LocalZonedDateTimeAssert_isAfter_Test extends LocalDateTimeAssertBa
   public void should_fail_if_actual_is_null() {
     expectException(AssertionError.class, actualIsNull());
     LocalDateTime actual = null;
-    assertThat(actual).isAfter(new LocalDateTime());
+    assertThat(actual).isAfter(LocalDateTime.now());
   }
 
   @Test
   public void should_fail_if_dateTime_parameter_is_null() {
     expectException(IllegalArgumentException.class, "The LocalDateTime to compare actual with should not be null");
-    assertThat(new LocalDateTime()).isAfter((LocalDateTime) null);
+    assertThat(LocalDateTime.now()).isAfter((LocalDateTime) null);
   }
 
   @Test
   public void should_fail_if_dateTime_as_string_parameter_is_null() {
     expectException(IllegalArgumentException.class,
-        "The String representing the DateTime to compare actual with should not be null");
-    assertThat(new DateTime()).isAfter((String) null);
+        "The String representing the ZonedDateTime to compare actual with should not be null");
+    assertThat(ZonedDateTime.now()).isAfter( (String) null);
   }
 
 

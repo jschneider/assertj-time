@@ -16,16 +16,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.time.api.ZonedDateTimeAssert.NULL_DATE_TIME_PARAMETER_MESSAGE;
 import static org.assertj.time.api.Assertions.assertThat;
-import static org.joda.time.DateTimeZone.UTC;
 
 import org.assertj.time.api.JodaTimeBaseTest;
-import org.joda.time.DateTime;
+
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+
 import org.junit.Test;
 
 
 public class ZonedDateTimeAssert_isEqualToIgnoringSeconds_Test extends JodaTimeBaseTest {
 
-  private final DateTime refDatetime = new DateTime(2000, 1, 1, 23, 51, 0, 0, UTC);
+  private final ZonedDateTime refDatetime = ZonedDateTime.of(2000, 1, 1, 23, 51, 0, 0, ZoneOffset.UTC);
 
   @Test
   public void should_pass_if_actual_is_equal_to_other_ignoring_second_fields() {
@@ -48,7 +51,7 @@ public class ZonedDateTimeAssert_isEqualToIgnoringSeconds_Test extends JodaTimeB
   @Test
   public void should_fail_as_seconds_fields_are_different_even_if_time_difference_is_less_than_a_second() {
     try {
-      assertThat(refDatetime).isEqualToIgnoringSeconds(refDatetime.minusMillis(1));
+      assertThat(refDatetime).isEqualToIgnoringSeconds(refDatetime.minus(1, ChronoUnit.MILLIS));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
           .isEqualTo(
@@ -61,8 +64,8 @@ public class ZonedDateTimeAssert_isEqualToIgnoringSeconds_Test extends JodaTimeB
   @Test
   public void should_fail_if_actual_is_null() {
     expectException(AssertionError.class, actualIsNull());
-    DateTime actual = null;
-    assertThat(actual).isEqualToIgnoringSeconds(new DateTime());
+    ZonedDateTime actual = null;
+    assertThat(actual).isEqualToIgnoringSeconds(ZonedDateTime.now());
   }
 
   @Test

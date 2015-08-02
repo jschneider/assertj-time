@@ -18,12 +18,14 @@ import static org.assertj.time.api.Assertions.assertThat;
 import static org.assertj.time.api.LocalDateTimeAssert.NULL_LOCAL_DATE_TIME_PARAMETER_MESSAGE;
 
 import org.assertj.time.api.JodaTimeBaseTest;
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 import org.junit.Test;
 
 public class LocalZonedDateTimeAssert_isEqualToIgnoringHours_Test extends JodaTimeBaseTest {
 
-  private final LocalDateTime refLocalDateTime = new LocalDateTime(2000, 1, 2, 0, 0, 0, 0);
+  private final LocalDateTime refLocalDateTime = LocalDateTime.of(2000, 1, 2, 0, 0, 0, 0);
 
   @Test
   public void should_pass_if_actual_is_equal_to_other_ignoring_hour_fields() {
@@ -46,7 +48,7 @@ public class LocalZonedDateTimeAssert_isEqualToIgnoringHours_Test extends JodaTi
   @Test
   public void should_fail_as_hours_fields_are_different_even_if_time_difference_is_less_than_a_hour() {
     try {
-      assertThat(refLocalDateTime).isEqualToIgnoringHours(refLocalDateTime.minusMillis(1));
+      assertThat(refLocalDateTime).isEqualToIgnoringHours(refLocalDateTime.minus(1, ChronoUnit.MILLIS));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
           .isEqualTo(
@@ -60,7 +62,7 @@ public class LocalZonedDateTimeAssert_isEqualToIgnoringHours_Test extends JodaTi
   public void should_fail_if_actual_is_null() {
     expectException(AssertionError.class, actualIsNull());
     LocalDateTime actual = null;
-    assertThat(actual).isEqualToIgnoringHours(new LocalDateTime());
+    assertThat(actual).isEqualToIgnoringHours(LocalDateTime.now());
   }
 
   @Test

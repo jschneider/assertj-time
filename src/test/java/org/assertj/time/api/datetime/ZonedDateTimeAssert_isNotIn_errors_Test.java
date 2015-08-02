@@ -12,19 +12,20 @@
  */
 package org.assertj.time.api.datetime;
 
+import org.junit.*;
+import org.junit.experimental.theories.*;
+import org.junit.runner.*;
+
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.time.api.Assertions.assertThat;
-import static org.joda.time.DateTimeZone.UTC;
-
-import org.joda.time.DateTime;
-import org.junit.Test;
-import org.junit.experimental.theories.Theories;
-import org.junit.experimental.theories.Theory;
-import org.junit.runner.RunWith;
 
 /**
- * Only test String based assertion (tests with {@link DateTime} are already defined in assertj-core)
+ * Only test String based assertion (tests with {@link ZonedDateTime} are already defined in assertj-core)
  * 
  * @author Joel Costigliola
  */
@@ -32,9 +33,9 @@ import org.junit.runner.RunWith;
 public class ZonedDateTimeAssert_isNotIn_errors_Test extends DateTimeAssertBaseTest {
 
   @Theory
-  public void test_isNotIn_assertion(DateTime referenceDate) {
+  public void test_isNotIn_assertion( ZonedDateTime referenceDate ) {
     // WHEN
-    assertThat(referenceDate).isNotIn(referenceDate.plus(1).toString(), referenceDate.plus(2).toString());
+    assertThat( referenceDate ).isNotIn( referenceDate.plus( 1, ChronoUnit.MILLIS ).toString(), referenceDate.plus( 2, ChronoUnit.MILLIS ).toString() );
     // THEN
     verify_that_isNotIn_assertion_fails_and_throws_AssertionError(referenceDate);
   }
@@ -42,8 +43,8 @@ public class ZonedDateTimeAssert_isNotIn_errors_Test extends DateTimeAssertBaseT
   @Test
   public void test_isNotIn_assertion_error_message() {
     try {
-      assertThat(new DateTime(2000, 1, 5, 3, 0, 5, UTC)).isNotIn(new DateTime(2000, 1, 5, 3, 0, 5, UTC).toString(),
-          new DateTime(2012, 1, 1, 3, 3, 3, UTC).toString());
+      assertThat( ZonedDateTime.of( 2000, 1, 5, 3, 0, 5, 0, ZoneOffset.UTC ) ).isNotIn( ZonedDateTime.of( 2000, 1, 5, 3, 0, 5, 0, ZoneOffset.UTC ).toString(),
+                                                                                        ZonedDateTime.of( 2012, 1, 1, 3, 3, 3, 0, ZoneOffset.UTC ).toString() );
     } catch (AssertionError e) {
       assertThat(e).hasMessage(
           "\nExpecting:\n <2000-01-05T03:00:05.000Z>\nnot to be in:\n"
@@ -55,19 +56,19 @@ public class ZonedDateTimeAssert_isNotIn_errors_Test extends DateTimeAssertBaseT
 
   @Test
   public void should_fail_if_dateTimes_as_string_array_parameter_is_null() {
-    expectException(IllegalArgumentException.class, "The given DateTime array should not be null");
-    assertThat(new DateTime()).isNotIn((String[]) null);
+    expectException( IllegalArgumentException.class, "The given ZonedDateTime array should not be null" );
+    assertThat( ZonedDateTime.now() ).isNotIn( ( String[] ) null );
   }
 
   @Test
   public void should_fail_if_dateTimes_as_string_array_parameter_is_empty() {
-    expectException(IllegalArgumentException.class, "The given DateTime array should not be empty");
-    assertThat(new DateTime()).isNotIn(new String[0]);
+    expectException( IllegalArgumentException.class, "The given ZonedDateTime array should not be empty" );
+    assertThat( ZonedDateTime.now() ).isNotIn( new String[0] );
   }
 
-  private static void verify_that_isNotIn_assertion_fails_and_throws_AssertionError(DateTime reference) {
+  private static void verify_that_isNotIn_assertion_fails_and_throws_AssertionError( ZonedDateTime reference ) {
     try {
-      assertThat(reference).isNotIn(reference.toString(), reference.plus(1).toString());
+      assertThat(reference).isNotIn(reference.toString(), reference.plus(1, ChronoUnit.MILLIS).toString());
     } catch (AssertionError e) {
       // AssertionError was expected
       return;

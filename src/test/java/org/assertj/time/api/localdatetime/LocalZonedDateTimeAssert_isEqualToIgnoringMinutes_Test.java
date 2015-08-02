@@ -16,15 +16,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.time.api.Assertions.assertThat;
 import static org.assertj.time.api.LocalDateTimeAssert.NULL_LOCAL_DATE_TIME_PARAMETER_MESSAGE;
+import static org.assertj.time.api.ZonedDateTimeAssert.*;
 
 import org.assertj.time.api.JodaTimeBaseTest;
-import org.joda.time.LocalDateTime;
 import org.junit.Test;
+
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 
 public class LocalZonedDateTimeAssert_isEqualToIgnoringMinutes_Test extends JodaTimeBaseTest {
 
-  private final LocalDateTime refLocalDateTime = new LocalDateTime(2000, 1, 1, 23, 0, 0, 0);
+  private final LocalDateTime refLocalDateTime = LocalDateTime.of( 2000, 1, 1, 23, 0, 0, 0);
 
   @Test
   public void should_pass_if_actual_is_equal_to_other_ignoring_minute_fields() {
@@ -47,7 +50,7 @@ public class LocalZonedDateTimeAssert_isEqualToIgnoringMinutes_Test extends Joda
   @Test
   public void should_fail_as_minutes_fields_are_different_even_if_time_difference_is_less_than_a_minute() {
     try {
-      assertThat(refLocalDateTime).isEqualToIgnoringMinutes(refLocalDateTime.minusMillis(1));
+      assertThat(refLocalDateTime).isEqualToIgnoringMinutes(refLocalDateTime.minus( 1, ChronoUnit.MILLIS ));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
           .isEqualTo(
@@ -61,7 +64,7 @@ public class LocalZonedDateTimeAssert_isEqualToIgnoringMinutes_Test extends Joda
   public void should_fail_if_actual_is_null() {
     expectException(AssertionError.class, actualIsNull());
     LocalDateTime actual = null;
-    assertThat(actual).isEqualToIgnoringMinutes(new LocalDateTime());
+    assertThat(actual).isEqualToIgnoringMinutes(LocalDateTime.now());
   }
 
   @Test

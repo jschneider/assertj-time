@@ -16,21 +16,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.time.api.ZonedDateTimeAssert.NULL_DATE_TIME_PARAMETER_MESSAGE;
 import static org.assertj.time.api.Assertions.assertThat;
-import static org.joda.time.DateTimeZone.UTC;
 
 import org.assertj.time.api.JodaTimeBaseTest;
-import org.joda.time.DateTime;
+
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
+
 import org.junit.Test;
 
 
 public class ZonedDateTimeAssert_isEqualToIgnoringMilliseconds_Test extends JodaTimeBaseTest {
 
-  private final DateTime refDatetime = new DateTime(2000, 1, 1, 0, 0, 1, 0, UTC);
+  private final ZonedDateTime refDatetime = ZonedDateTime.of(2000, 1, 1, 0, 0, 1, 0, ZoneOffset.UTC);
 
   @Test
   public void should_pass_if_actual_is_equal_to_other_ignoring_millisecond_fields() {
-    assertThat(refDatetime).isEqualToIgnoringMillis(refDatetime.millisOfSecond().setCopy(55));
-    assertThat(refDatetime).isEqualToIgnoringMillis(refDatetime.plusMillis(1));
+    assertThat(refDatetime).isEqualToIgnoringMillis(refDatetime.with(ChronoField.MILLI_OF_SECOND, 55));
+    assertThat(refDatetime).isEqualToIgnoringMillis(refDatetime.plus(1, ChronoUnit.MILLIS));
   }
 
   @Test
@@ -49,7 +53,7 @@ public class ZonedDateTimeAssert_isEqualToIgnoringMilliseconds_Test extends Joda
   @Test
   public void should_fail_as_seconds_fields_are_different_even_if_time_difference_is_less_than_a_second() {
     try {
-      assertThat(refDatetime).isEqualToIgnoringMillis(refDatetime.minusMillis(1));
+      assertThat(refDatetime).isEqualToIgnoringMillis(refDatetime.minus(1, ChronoUnit.MILLIS));
     } catch (AssertionError e) {
       assertThat(e.getMessage())
           .isEqualTo(
@@ -62,8 +66,8 @@ public class ZonedDateTimeAssert_isEqualToIgnoringMilliseconds_Test extends Joda
   @Test
   public void should_fail_if_actual_is_null() {
     expectException(AssertionError.class, actualIsNull());
-    DateTime actual = null;
-    assertThat(actual).isEqualToIgnoringMillis(new DateTime());
+    ZonedDateTime actual = null;
+    assertThat(actual).isEqualToIgnoringMillis(ZonedDateTime.now());
   }
 
   @Test

@@ -59,7 +59,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * Example :
    * 
    * <pre>
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isBefore(new ZonedDateTime(&quot;2000-01-02&quot;));
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isBefore(ZonedDateTime.of(&quot;2000-01-02&quot;));
    * </pre>
    * 
    * @param other the given {@link ZonedDateTime}.
@@ -90,7 +90,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * 
    * <pre>
    * // use directly String in comparison to avoid a conversion
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isBefore(&quot;2000-01-02&quot;);
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isBefore(&quot;2000-01-02&quot;);
    * </pre>
    * 
    * @param ZonedDateTimeAsString String representing a {@link ZonedDateTime}.
@@ -102,7 +102,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    */
   public ZonedDateTimeAssert isBefore( String ZonedDateTimeAsString) {
     assertZonedDateTimeAsStringParameterIsNotNull(ZonedDateTimeAsString);
-    //return isBefore(new ZonedDateTime(ZonedDateTimeAsString, actual.getZone()));
+    //return isBefore(ZonedDateTime.of(ZonedDateTimeAsString, actual.getZone()));
     return isBefore( ZonedDateTime.parse( ZonedDateTimeAsString ) );
   }
 
@@ -112,8 +112,8 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * Example :
    * 
    * <pre>
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isBeforeOrEqualTo(new ZonedDateTime(&quot;2000-01-01&quot;))
-   *                                       .isBeforeOrEqualTo(new ZonedDateTime(&quot;2000-01-02&quot;));
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isBeforeOrEqualTo(ZonedDateTime.of(&quot;2000-01-01&quot;))
+   *                                       .isBeforeOrEqualTo(ZonedDateTime.of(&quot;2000-01-02&quot;));
    * </pre>
    * 
    * @param other the given {@link ZonedDateTime}.
@@ -144,7 +144,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * 
    * <pre>
    * // use String in comparison to avoid conversion
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isBeforeOrEqualTo(&quot;2000-01-01&quot;)
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isBeforeOrEqualTo(&quot;2000-01-01&quot;)
    *                                       .isBeforeOrEqualTo(&quot;2000-01-02&quot;);
    * </pre>
    * 
@@ -166,8 +166,8 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * Example :
    * 
    * <pre>
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isAfterOrEqualTo(new ZonedDateTime(&quot;2000-01-01&quot;))
-   *                                       .isAfterOrEqualTo(new ZonedDateTime(&quot;1999-12-31&quot;));
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isAfterOrEqualTo(ZonedDateTime.of(&quot;2000-01-01&quot;))
+   *                                       .isAfterOrEqualTo(ZonedDateTime.of(&quot;1999-12-31&quot;));
    * </pre>
    * 
    * @param other the given {@link ZonedDateTime}.
@@ -198,7 +198,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * 
    * <pre>
    * // use String in comparison to avoid conversion
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isAfterOrEqualTo(&quot;2000-01-01&quot;)
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isAfterOrEqualTo(&quot;2000-01-01&quot;)
    *                                       .isAfterOrEqualTo(&quot;1999-12-31&quot;);
    * </pre>
    * 
@@ -211,7 +211,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    */
   public ZonedDateTimeAssert isAfterOrEqualTo( String zonedDateTimeAsString) {
     assertZonedDateTimeAsStringParameterIsNotNull(zonedDateTimeAsString);
-    //return isAfterOrEqualTo(new ZonedDateTime(ZonedDateTimeAsString, actual.getZone()));
+    //return isAfterOrEqualTo(ZonedDateTime.of(ZonedDateTimeAsString, actual.getZone()));
     return isAfterOrEqualTo(ZonedDateTime.parse( zonedDateTimeAsString ));
   }
 
@@ -221,7 +221,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * Example :
    * 
    * <pre>
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isAfter(new ZonedDateTime(&quot;1999-12-31&quot;));
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isAfter(ZonedDateTime.of(&quot;1999-12-31&quot;));
    * </pre>
    * 
    * @param other the given {@link ZonedDateTime}.
@@ -251,7 +251,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * 
    * <pre>
    * // use String in comparison to avoid conversion
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isAfter(&quot;1999-12-31&quot;);
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isAfter(&quot;1999-12-31&quot;);
    * </pre>
    * 
    * @param zonedDateTimeAsString String representing a {@link ZonedDateTime}.
@@ -282,13 +282,13 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * 
    * <pre>
    * // successfull assertions
-   * ZonedDateTime ZonedDateTime1 = new ZonedDateTime(2000, 1, 1, 0, 0, 1, 0);
-   * ZonedDateTime ZonedDateTime2 = new ZonedDateTime(2000, 1, 1, 0, 0, 1, 456);
+   * ZonedDateTime ZonedDateTime1 = ZonedDateTime.of(2000, 1, 1, 0, 0, 1, 0);
+   * ZonedDateTime ZonedDateTime2 = ZonedDateTime.of(2000, 1, 1, 0, 0, 1, 456);
    * assertThat(ZonedDateTime1).isEqualToIgnoringMillis(ZonedDateTime2);
    * 
    * // failing assertions (even if time difference is only 1ms)
-   * ZonedDateTime ZonedDateTimeA = new ZonedDateTime(2000, 1, 1, 0, 0, 1, 0);
-   * ZonedDateTime ZonedDateTimeB = new ZonedDateTime(2000, 1, 1, 0, 0, 0, 999);
+   * ZonedDateTime ZonedDateTimeA = ZonedDateTime.of(2000, 1, 1, 0, 0, 1, 0);
+   * ZonedDateTime ZonedDateTimeB = ZonedDateTime.of(2000, 1, 1, 0, 0, 0, 999);
    * assertThat(ZonedDateTimeA).isEqualToIgnoringMillis(ZonedDateTimeB);
    * </pre>
    * 
@@ -323,13 +323,13 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * 
    * <pre>
    * // successfull assertions
-   * ZonedDateTime ZonedDateTime1 = new ZonedDateTime(2000, 1, 1, 23, 50, 0, 0);
-   * ZonedDateTime ZonedDateTime2 = new ZonedDateTime(2000, 1, 1, 23, 50, 10, 456);
+   * ZonedDateTime ZonedDateTime1 = ZonedDateTime.of(2000, 1, 1, 23, 50, 0, 0);
+   * ZonedDateTime ZonedDateTime2 = ZonedDateTime.of(2000, 1, 1, 23, 50, 10, 456);
    * assertThat(ZonedDateTime1).isEqualToIgnoringSeconds(ZonedDateTime2);
    * 
    * // failing assertions (even if time difference is only 1ms)
-   * ZonedDateTime ZonedDateTimeA = new ZonedDateTime(2000, 1, 1, 23, 50, 00, 000);
-   * ZonedDateTime ZonedDateTimeB = new ZonedDateTime(2000, 1, 1, 23, 49, 59, 999);
+   * ZonedDateTime ZonedDateTimeA = ZonedDateTime.of(2000, 1, 1, 23, 50, 00, 000);
+   * ZonedDateTime ZonedDateTimeB = ZonedDateTime.of(2000, 1, 1, 23, 49, 59, 999);
    * assertThat(ZonedDateTimeA).isEqualToIgnoringSeconds(ZonedDateTimeB);
    * </pre>
    * 
@@ -364,13 +364,13 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * 
    * <pre>
    * // successfull assertions
-   * ZonedDateTime ZonedDateTime1 = new ZonedDateTime(2000, 1, 1, 23, 50, 0, 0);
-   * ZonedDateTime ZonedDateTime2 = new ZonedDateTime(2000, 1, 1, 23, 00, 2, 7);
+   * ZonedDateTime ZonedDateTime1 = ZonedDateTime.of(2000, 1, 1, 23, 50, 0, 0);
+   * ZonedDateTime ZonedDateTime2 = ZonedDateTime.of(2000, 1, 1, 23, 00, 2, 7);
    * assertThat(ZonedDateTime1).isEqualToIgnoringMinutes(ZonedDateTime2);
    * 
    * // failing assertions (even if time difference is only 1ms)
-   * ZonedDateTime ZonedDateTimeA = new ZonedDateTime(2000, 1, 1, 01, 00, 00, 000);
-   * ZonedDateTime ZonedDateTimeB = new ZonedDateTime(2000, 1, 1, 00, 59, 59, 999);
+   * ZonedDateTime ZonedDateTimeA = ZonedDateTime.of(2000, 1, 1, 01, 00, 00, 000);
+   * ZonedDateTime ZonedDateTimeB = ZonedDateTime.of(2000, 1, 1, 00, 59, 59, 999);
    * assertThat(ZonedDateTimeA).isEqualToIgnoringMinutes(ZonedDateTimeB);
    * </pre>
    * 
@@ -406,13 +406,13 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * 
    * <pre>
    * // successfull assertions
-   * ZonedDateTime ZonedDateTime1 = new ZonedDateTime(2000, 1, 1, 23, 59, 59, 999);
-   * ZonedDateTime ZonedDateTime2 = new ZonedDateTime(2000, 1, 1, 00, 00, 00, 000);
+   * ZonedDateTime ZonedDateTime1 = ZonedDateTime.of(2000, 1, 1, 23, 59, 59, 999);
+   * ZonedDateTime ZonedDateTime2 = ZonedDateTime.of(2000, 1, 1, 00, 00, 00, 000);
    * assertThat(ZonedDateTime1).isEqualToIgnoringHours(ZonedDateTime2);
    * 
    * // failing assertions (even if time difference is only 1ms)
-   * ZonedDateTime ZonedDateTimeA = new ZonedDateTime(2000, 1, 2, 00, 00, 00, 000);
-   * ZonedDateTime ZonedDateTimeB = new ZonedDateTime(2000, 1, 1, 23, 59, 59, 999);
+   * ZonedDateTime ZonedDateTimeA = ZonedDateTime.of(2000, 1, 2, 00, 00, 00, 000);
+   * ZonedDateTime ZonedDateTimeB = ZonedDateTime.of(2000, 1, 1, 23, 59, 59, 999);
    * assertThat(ZonedDateTimeA).isEqualToIgnoringHours(ZonedDateTimeB);
    * </pre>
    * 
@@ -438,7 +438,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * 
    * <pre>
    * // use directly String in comparison to avoid a conversion
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isEqualTo(new ZonedDateTime(&quot;2000-01-01&quot;));
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isEqualTo(ZonedDateTime.of(&quot;2000-01-01&quot;));
    * </pre>
    * 
    * @param expected the given value to compare the actual value to.
@@ -463,7 +463,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * 
    * <pre>
    * // use directly String in comparison to avoid a conversion
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isEqualTo(&quot;2000-01-01&quot;);
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isEqualTo(&quot;2000-01-01&quot;);
    * </pre>
    * 
    * @param zonedDateTimeAsString String representing a {@link ZonedDateTime}.
@@ -483,7 +483,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * Example :
    * 
    * <pre>
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isNotEqualTo(new ZonedDateTime(&quot;2000-01-15&quot;));
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isNotEqualTo(ZonedDateTime.of(&quot;2000-01-15&quot;));
    * </pre>
    * 
    * @param expected the given value to compare the actual value to.
@@ -508,7 +508,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * 
    * <pre>
    * // use directly String in comparison to avoid a conversion
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isNotEqualTo(&quot;2000-01-15&quot;);
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isNotEqualTo(&quot;2000-01-15&quot;);
    * </pre>
    * 
    * @param zonedDateTimeAsString String representing a {@link ZonedDateTime}.
@@ -529,7 +529,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * Example :
    * 
    * <pre>
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isIn(new ZonedDateTime(&quot;1999-12-31&quot;), new ZonedDateTime(&quot;2000-01-01&quot;));
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isIn(ZonedDateTime.of(&quot;1999-12-31&quot;), ZonedDateTime.of(&quot;2000-01-01&quot;));
    * </pre>
    * 
    * @param expected the given {@link ZonedDateTime}s to compare the actual value to.
@@ -554,7 +554,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * 
    * <pre>
    * // use String based representation of LocalZonedDateTime
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isIn(&quot;1999-12-31&quot;, &quot;2000-01-01&quot;);
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isIn(&quot;1999-12-31&quot;, &quot;2000-01-01&quot;);
    * </pre>
    * 
    * @param ZonedDateTimesAsString String array representing {@link ZonedDateTime}s.
@@ -575,7 +575,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * Example :
    * 
    * <pre>
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isNotIn(new ZonedDateTime(&quot;1999-12-31&quot;), new ZonedDateTime(&quot;2000-01-02&quot;));
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isNotIn(ZonedDateTime.of(&quot;1999-12-31&quot;), ZonedDateTime.of(&quot;2000-01-02&quot;));
    * </pre>
    * 
    * @param expected the given {@link ZonedDateTime}s to compare the actual value to.
@@ -600,7 +600,7 @@ public class ZonedDateTimeAssert extends AbstractAssert<ZonedDateTimeAssert, Zon
    * 
    * <pre>
    * // use String based representation of ZonedDateTime
-   * assertThat(new ZonedDateTime(&quot;2000-01-01&quot;)).isNotIn(&quot;1999-12-31&quot;, &quot;2000-01-02&quot;);
+   * assertThat(ZonedDateTime.of(&quot;2000-01-01&quot;)).isNotIn(&quot;1999-12-31&quot;, &quot;2000-01-02&quot;);
    * </pre>
    * 
    * @param ZonedDateTimesAsString String array representing {@link ZonedDateTime}s.

@@ -18,13 +18,13 @@ import static org.assertj.time.api.Assertions.assertThat;
 import static org.assertj.time.api.LocalDateTimeAssert.NULL_LOCAL_DATE_TIME_PARAMETER_MESSAGE;
 
 import org.assertj.time.api.JodaTimeBaseTest;
-import org.joda.time.LocalDateTime;
+import java.time.LocalDateTime;
 import org.junit.Test;
 
 
 public class LocalZonedDateTimeAssert_isEqualToIgnoringMilliseconds_Test extends JodaTimeBaseTest {
 
-  private final LocalDateTime refLocalDateTime = new LocalDateTime(2000, 1, 1, 0, 0, 1, 0);
+  private final LocalDateTime refLocalDateTime = LocalDateTime.of(2000, 1, 1, 0, 0, 1, 0);
 
   @Test
   public void should_pass_if_actual_is_equal_to_other_ignoring_millisecond_fields() {
@@ -62,7 +62,7 @@ public class LocalZonedDateTimeAssert_isEqualToIgnoringMilliseconds_Test extends
   public void should_fail_if_actual_is_null() {
     expectException(AssertionError.class, actualIsNull());
     LocalDateTime actual = null;
-    assertThat(actual).isEqualToIgnoringMillis(new LocalDateTime());
+    assertThat(actual).isEqualToIgnoringMillis(LocalDateTime.now());
   }
 
   @Test

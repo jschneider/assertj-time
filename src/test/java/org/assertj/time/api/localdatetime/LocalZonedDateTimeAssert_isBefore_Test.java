@@ -17,8 +17,8 @@ import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.core.util.FailureMessages.actualIsNull;
 import static org.assertj.time.api.Assertions.assertThat;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
@@ -45,7 +45,7 @@ public class LocalZonedDateTimeAssert_isBefore_Test extends LocalDateTimeAssertB
   @Test
   public void test_isBefore_assertion_error_message() {
     try {
-      assertThat(new LocalDateTime(2000, 1, 5, 3, 0, 5)).isBefore(new LocalDateTime(1998, 1, 1, 3, 3, 3));
+      assertThat(LocalDateTime.of(2000, 1, 5, 3, 0, 5)).isBefore(LocalDateTime.of(1998, 1, 1, 3, 3, 3));
     } catch (AssertionError e) {
       assertThat(e).hasMessage("\nExpecting:\n  <2000-01-05T03:00:05.000>\nto be strictly before:\n  <1998-01-01T03:03:03.000>\n");
       return;
@@ -57,20 +57,20 @@ public class LocalZonedDateTimeAssert_isBefore_Test extends LocalDateTimeAssertB
   public void should_fail_if_actual_is_null() {
     expectException(AssertionError.class, actualIsNull());
     LocalDateTime actual = null;
-    assertThat(actual).isBefore(new LocalDateTime());
+    assertThat(actual).isBefore(LocalDateTime.now());
   }
 
   @Test
   public void should_fail_if_dateTime_parameter_is_null() {
     expectException(IllegalArgumentException.class, "The LocalDateTime to compare actual with should not be null");
-    assertThat(new LocalDateTime()).isBefore((LocalDateTime) null);
+    assertThat(LocalDateTime.now()).isBefore((LocalDateTime) null);
   }
 
   @Test
   public void should_fail_if_dateTime_as_string_parameter_is_null() {
     expectException(IllegalArgumentException.class,
-        "The String representing the DateTime to compare actual with should not be null");
-    assertThat(new DateTime()).isBefore((String) null);
+        "The String representing the ZonedDateTime to compare actual with should not be null");
+    assertThat(ZonedDateTime.now()).isBefore((String) null);
   }
 
   private static void verify_that_isBefore_assertion_fails_and_throws_AssertionError(LocalDateTime dateToTest,

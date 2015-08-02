@@ -2,11 +2,11 @@
 ------------------------------
 
 New features : 
-- github#5 : DateTime and LocalDateTime equals comparison with a precision level 
+- github#5 : ZonedDateTime and LocalDateTime equals comparison with a precision level
 
 Example :
-DateTime dateTime1 = new DateTime(2000, 1, 1, 23, 59, 59, 999);
-DateTime dateTime2 = new DateTime(2000, 1, 1, 00, 00, 00, 000);
+ZonedDateTime dateTime1 = ZonedDateTime.of(2000, 1, 1, 23, 59, 59, 999);
+ZonedDateTime dateTime2 = ZonedDateTime.of(2000, 1, 1, 00, 00, 00, 000);
 assertThat(dateTime1).isEqualToIgnoringHours(dateTime2);
 
 
@@ -23,4 +23,4 @@ New features :
 - github#1 : Assertions for Joda Time types 
 
 Improvement :
-- github#3 : add string based DateTime/LocalDateTime assertions  
+- github#3 : add string based ZonedDateTime/LocalDateTime assertions

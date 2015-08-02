@@ -16,15 +16,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.time.api.Assertions.assertThat;
 
-import org.joda.time.DateTime;
-import org.joda.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
 /**
- * Only test String based assertion (tests with {@link DateTime} are already defined in assertj-core)
+ * Only test String based assertion (tests with {@link ZonedDateTime} are already defined in assertj-core)
  * 
  * @author Joel Costigliola
  */
@@ -42,7 +42,7 @@ public class LocalZonedDateTimeAssert_isEqualTo_Test extends LocalDateTimeAssert
   @Test
   public void test_isEqualTo_assertion_error_message() {
     try {
-      assertThat(new LocalDateTime(2000, 1, 5, 3, 0, 5)).isEqualTo(new LocalDateTime(2012, 1, 1, 3, 3, 3).toString());
+      assertThat(LocalDateTime.of(2000, 1, 5, 3, 0, 5)).isEqualTo(LocalDateTime.of(2012, 1, 1, 3, 3, 3).toString());
     } catch (AssertionError e) {
       assertThat(e).hasMessage("expected:<20[12-01-01T03:03:03].000> but was:<20[00-01-05T03:00:05].000>");
       return;
@@ -54,7 +54,7 @@ public class LocalZonedDateTimeAssert_isEqualTo_Test extends LocalDateTimeAssert
   public void should_fail_if_dateTime_as_string_parameter_is_null() {
     expectException(IllegalArgumentException.class,
         "The String representing the LocalDateTime to compare actual with should not be null");
-    assertThat(new LocalDateTime()).isEqualTo((String) null);
+    assertThat(LocalDateTime.now()).isEqualTo((String) null);
   }
 
   private static void verify_that_isEqualTo_assertion_fails_and_throws_AssertionError(LocalDateTime reference) {

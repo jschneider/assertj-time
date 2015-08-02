@@ -15,16 +15,18 @@ package org.assertj.time.api.datetime;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.assertj.time.api.Assertions.assertThat;
-import static org.joda.time.DateTimeZone.UTC;
 
-import org.joda.time.DateTime;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
+
 import org.junit.Test;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
 /**
- * Only test String based assertion (tests with {@link DateTime} are already defined in assertj-core)
+ * Only test String based assertion (tests with {@link ZonedDateTime} are already defined in assertj-core)
  * 
  * @author Joel Costigliola
  */
@@ -32,7 +34,7 @@ import org.junit.runner.RunWith;
 public class ZonedDateTimeAssert_isEqualTo_errors_Test extends DateTimeAssertBaseTest {
 
   @Theory
-  public void test_isEqualTo_assertion(DateTime referenceDate) {
+  public void test_isEqualTo_assertion(ZonedDateTime referenceDate) {
     // WHEN
     assertThat(referenceDate).isEqualTo(referenceDate.toString());
     // THEN
@@ -42,7 +44,7 @@ public class ZonedDateTimeAssert_isEqualTo_errors_Test extends DateTimeAssertBas
   @Test
   public void test_isEqualTo_assertion_error_message() {
     try {
-      assertThat(new DateTime(2000, 1, 5, 3, 0, 5, UTC)).isEqualTo(new DateTime(2012, 1, 1, 3, 3, 3, UTC).toString());
+      assertThat(ZonedDateTime.of(2000, 1, 5, 3, 0, 5, 0, ZoneOffset.UTC)).isEqualTo(ZonedDateTime.of(2012, 1, 1, 3, 3, 3, 0, ZoneOffset.UTC).toString());
     } catch (AssertionError e) {
       assertThat(e).hasMessage("expected:<20[12-01-01T03:03:03].000Z> but was:<20[00-01-05T03:00:05].000Z>");
       return;
@@ -53,13 +55,13 @@ public class ZonedDateTimeAssert_isEqualTo_errors_Test extends DateTimeAssertBas
   @Test
   public void should_fail_if_dateTime_as_string_parameter_is_null() {
     expectException(IllegalArgumentException.class,
-        "The String representing the DateTime to compare actual with should not be null");
-    assertThat(new DateTime()).isEqualTo((String) null);
+        "The String representing the ZonedDateTime to compare actual with should not be null");
+    assertThat(ZonedDateTime.now()).isEqualTo((String) null);
   }
 
-  private static void verify_that_isEqualTo_assertion_fails_and_throws_AssertionError(DateTime reference) {
+  private static void verify_that_isEqualTo_assertion_fails_and_throws_AssertionError(ZonedDateTime reference) {
     try {
-      assertThat(reference).isEqualTo(reference.plus(1).toString());
+      assertThat(reference).isEqualTo(reference.plus(1, ChronoUnit.MILLIS).toString());
     } catch (AssertionError e) {
       // AssertionError was expected
       return;

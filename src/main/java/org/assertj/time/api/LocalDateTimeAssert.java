@@ -58,7 +58,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Example :
    * 
    * <pre>
-   * assertThat(new LocalDateTime(&quot;2000-01-01&quot;)).isBefore(new LocalDateTime(&quot;2000-01-02&quot;));
+   * assertThat(LocalDateTime.of(&quot;2000-01-01&quot;)).isBefore(LocalDateTime.of(&quot;2000-01-02&quot;));
    * </pre>
    * 
    * @param other the given {@link LocalDateTime}.
@@ -80,14 +80,14 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Same assertion as {@link #isBefore(LocalDateTime)} but the {@link LocalDateTime} is built from given String, which
    * must follow <a href=
    * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
+   * >ISO ZonedDateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
    * constructor.
    * <p>
    * Example :
    * 
    * <pre>
    * // use directly String in comparison to avoid a conversion
-   * assertThat(new LocalDateTime(&quot;2000-01-01&quot;)).isBefore(&quot;2000-01-02&quot;);
+   * assertThat(LocalDateTime.of(&quot;2000-01-01&quot;)).isBefore(&quot;2000-01-02&quot;);
    * </pre>
    * 
    * @param localDateTimeAsString String representing a {@link LocalDateTime}.
@@ -108,8 +108,8 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Example :
    * 
    * <pre>
-   * assertThat(new LocalDateTime(&quot;2000-01-01&quot;)).isBeforeOrEqualTo(new LocalDateTime(&quot;2000-01-01&quot;))
-   *                                            .isBeforeOrEqualTo(new LocalDateTime(&quot;2000-01-02&quot;));
+   * assertThat(LocalDateTime.of(&quot;2000-01-01&quot;)).isBeforeOrEqualTo(LocalDateTime.of(&quot;2000-01-01&quot;))
+   *                                            .isBeforeOrEqualTo(LocalDateTime.of(&quot;2000-01-02&quot;));
    * </pre>
    * 
    * @param other the given {@link LocalDateTime}.
@@ -131,14 +131,14 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Same assertion as {@link #isBeforeOrEqualTo(LocalDateTime)} but the {@link LocalDateTime} is built from given
    * String, which must follow <a href=
    * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
+   * >ISO ZonedDateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
    * constructor.
    * <p>
    * Example :
    * 
    * <pre>
    * // use String in comparison to avoid conversion
-   * assertThat(new LocalDateTime(&quot;2000-01-01&quot;)).isBeforeOrEqualTo(&quot;2000-01-01&quot;)
+   * assertThat(LocalDateTime.of(&quot;2000-01-01&quot;)).isBeforeOrEqualTo(&quot;2000-01-01&quot;)
    *                                            .isBeforeOrEqualTo(&quot;2000-01-02&quot;);
    * </pre>
    * 
@@ -160,8 +160,8 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Example :
    * 
    * <pre>
-   * assertThat(new LocalDateTime(&quot;2000-01-01&quot;)).isAfterOrEqualTo(new LocalDateTime(&quot;2000-01-01&quot;))
-   *                                            .isAfterOrEqualTo(new LocalDateTime(&quot;1999-12-31&quot;));
+   * assertThat(LocalDateTime.of(&quot;2000-01-01&quot;)).isAfterOrEqualTo(LocalDateTime.of(&quot;2000-01-01&quot;))
+   *                                            .isAfterOrEqualTo(LocalDateTime.of(&quot;1999-12-31&quot;));
    * </pre>
    * 
    * @param other the given {@link LocalDateTime}.
@@ -183,14 +183,14 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Same assertion as {@link #isAfterOrEqualTo(LocalDateTime)} but the {@link LocalDateTime} is built from given
    * String, which must follow <a href=
    * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
+   * >ISO ZonedDateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
    * constructor.
    * <p>
    * Example :
    * 
    * <pre>
    * // use String in comparison to avoid conversion
-   * assertThat(new LocalDateTime(&quot;2000-01-01&quot;)).isAfterOrEqualTo(&quot;2000-01-01&quot;)
+   * assertThat(LocalDateTime.of(&quot;2000-01-01&quot;)).isAfterOrEqualTo(&quot;2000-01-01&quot;)
    *                                            .isAfterOrEqualTo(&quot;1999-12-31&quot;);
    * </pre>
    * 
@@ -212,7 +212,7 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Example :
    * 
    * <pre>
-   * assertThat(new LocalDateTime(&quot;2000-01-01&quot;)).isAfter(new LocalDateTime(&quot;1999-12-31&quot;));
+   * assertThat(LocalDateTime.of(&quot;2000-01-01&quot;)).isAfter(LocalDateTime.of(&quot;1999-12-31&quot;));
    * </pre>
    * 
    * @param other the given {@link LocalDateTime}.
@@ -234,14 +234,14 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Same assertion as {@link #isAfter(LocalDateTime)} but the {@link LocalDateTime} is built from given a String that
    * must follow <a href=
    * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
+   * >ISO ZonedDateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
    * constructor.
    * <p>
    * Example :
    * 
    * <pre>
    * // use String in comparison to avoid conversion
-   * assertThat(new LocalDateTime(&quot;2000-01-01&quot;)).isAfter(&quot;1999-12-31&quot;);
+   * assertThat(LocalDateTime.of(&quot;2000-01-01&quot;)).isAfter(&quot;1999-12-31&quot;);
    * </pre>
    * 
    * @param localDateTimeAsString String representing a {@link LocalDateTime}.
@@ -260,14 +260,14 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Same assertion as {@link #isEqualTo(Object)} (where Object is expected to be {@link LocalDateTime}) but here you
    * pass {@link LocalDateTime} String representation that must follow <a href=
    * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
+   * >ISO ZonedDateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
    * constructor.
    * <p>
    * Example :
    * 
    * <pre>
    * // use directly String in comparison to avoid a conversion
-   * assertThat(new LocalDateTime(&quot;2000-01-01&quot;)).isEqualTo(&quot;2000-01-01&quot;);
+   * assertThat(LocalDateTime.of(&quot;2000-01-01&quot;)).isEqualTo(&quot;2000-01-01&quot;);
    * </pre>
    * 
    * @param dateTimeAsString String representing a {@link LocalDateTime}.
@@ -286,14 +286,14 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Same assertion as {@link #isNotEqualTo(Object)} (where Object is expected to be {@link LocalDateTime}) but here you
    * pass {@link LocalDateTime} String representation that must follow <a href=
    * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
+   * >ISO ZonedDateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
    * constructor.
    * <p>
    * Example :
    * 
    * <pre>
    * // use directly String in comparison to avoid a conversion
-   * assertThat(new LocalDateTime(&quot;2000-01-01&quot;)).isNotEqualTo(&quot;2000-01-15&quot;);
+   * assertThat(LocalDateTime.of(&quot;2000-01-01&quot;)).isNotEqualTo(&quot;2000-01-15&quot;);
    * </pre>
    * 
    * @param dateTimeAsString String representing a {@link LocalDateTime}.
@@ -312,14 +312,14 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Same assertion as {@link #isIn(Object...)} (where Objects are expected to be {@link LocalDateTime}) but here you
    * pass {@link LocalDateTime} String representations that must follow <a href=
    * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
+   * >ISO ZonedDateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
    * constructor.
    * <p>
    * Example :
    * 
    * <pre>
    * // use String based representation of LocalDateTime
-   * assertThat(new LocalDateTime(&quot;2000-01-01&quot;)).isIn(&quot;1999-12-31&quot;, &quot;2000-01-01&quot;);
+   * assertThat(LocalDateTime.of(&quot;2000-01-01&quot;)).isIn(&quot;1999-12-31&quot;, &quot;2000-01-01&quot;);
    * </pre>
    * 
    * @param dateTimesAsString String array representing {@link LocalDateTime}s.
@@ -338,14 +338,14 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * Same assertion as {@link #isNotIn(Object...)} (where Objects are expected to be {@link LocalDateTime}) but here you
    * pass {@link LocalDateTime} String representations that must follow <a href=
    * "http://joda-time.sourceforge.net/api-release/org/joda/time/format/ISODateTimeFormat.html#localDateOptionalTimeParser()"
-   * >ISO DateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
+   * >ISO ZonedDateTime format</a> to allow calling {@link LocalDateTime#LocalDateTime(Object) LocalDateTime(Object)}
    * constructor.
    * <p>
    * Example :
    * 
    * <pre>
    * // use String based representation of LocalDateTime
-   * assertThat(new LocalDateTime(&quot;2000-01-01&quot;)).isNotIn(&quot;1999-12-31&quot;, &quot;2000-01-02&quot;);
+   * assertThat(LocalDateTime.of(&quot;2000-01-01&quot;)).isNotIn(&quot;1999-12-31&quot;, &quot;2000-01-02&quot;);
    * </pre>
    * 
    * @param dateTimesAsString Array of String representing a {@link LocalDateTime}.
@@ -418,13 +418,13 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * 
    * <pre>
    * // successfull assertions
-   * LocalDateTime localDateTime1 = new LocalDateTime(2000, 1, 1, 0, 0, 1, 0);
-   * LocalDateTime localDateTime2 = new LocalDateTime(2000, 1, 1, 0, 0, 1, 456);
+   * LocalDateTime localDateTime1 = LocalDateTime.of(2000, 1, 1, 0, 0, 1, 0);
+   * LocalDateTime localDateTime2 = LocalDateTime.of(2000, 1, 1, 0, 0, 1, 456);
    * assertThat(localDateTime1).isEqualToIgnoringMillis(localDateTime2);
    * 
    * // failing assertions (even if time difference is only 1ms)
-   * LocalDateTime localDateTimeA = new LocalDateTime(2000, 1, 1, 0, 0, 1, 0);
-   * LocalDateTime localDateTimeB = new LocalDateTime(2000, 1, 1, 0, 0, 0, 999);
+   * LocalDateTime localDateTimeA = LocalDateTime.of(2000, 1, 1, 0, 0, 1, 0);
+   * LocalDateTime localDateTimeB = LocalDateTime.of(2000, 1, 1, 0, 0, 0, 999);
    * assertThat(localDateTimeA).isEqualToIgnoringMillis(localDateTimeB);
    * </pre>
    * 
@@ -457,13 +457,13 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * 
    * <pre>
    * // successfull assertions
-   * LocalDateTime localDateTime1 = new LocalDateTime(2000, 1, 1, 23, 50, 0, 0);
-   * LocalDateTime localDateTime2 = new LocalDateTime(2000, 1, 1, 23, 50, 10, 456);
+   * LocalDateTime localDateTime1 = LocalDateTime.of(2000, 1, 1, 23, 50, 0, 0);
+   * LocalDateTime localDateTime2 = LocalDateTime.of(2000, 1, 1, 23, 50, 10, 456);
    * assertThat(localDateTime1).isEqualToIgnoringSeconds(localDateTime2);
    * 
    * // failing assertions (even if time difference is only 1ms)
-   * LocalDateTime localDateTimeA = new LocalDateTime(2000, 1, 1, 23, 50, 00, 000);
-   * LocalDateTime localDateTimeB = new LocalDateTime(2000, 1, 1, 23, 49, 59, 999);
+   * LocalDateTime localDateTimeA = LocalDateTime.of(2000, 1, 1, 23, 50, 00, 000);
+   * LocalDateTime localDateTimeB = LocalDateTime.of(2000, 1, 1, 23, 49, 59, 999);
    * assertThat(localDateTimeA).isEqualToIgnoringSeconds(localDateTimeB);
    * </pre>
    * 
@@ -497,13 +497,13 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * 
    * <pre>
    * // successfull assertions
-   * LocalDateTime localDateTime1 = new LocalDateTime(2000, 1, 1, 23, 50, 0, 0);
-   * LocalDateTime localDateTime2 = new LocalDateTime(2000, 1, 1, 23, 00, 2, 7);
+   * LocalDateTime localDateTime1 = LocalDateTime.of(2000, 1, 1, 23, 50, 0, 0);
+   * LocalDateTime localDateTime2 = LocalDateTime.of(2000, 1, 1, 23, 00, 2, 7);
    * assertThat(localDateTime1).isEqualToIgnoringMinutes(localDateTime2);
    * 
    * // failing assertions (even if time difference is only 1ms)
-   * LocalDateTime localDateTimeA = new LocalDateTime(2000, 1, 1, 01, 00, 00, 000);
-   * LocalDateTime localDateTimeB = new LocalDateTime(2000, 1, 1, 00, 59, 59, 999);
+   * LocalDateTime localDateTimeA = LocalDateTime.of(2000, 1, 1, 01, 00, 00, 000);
+   * LocalDateTime localDateTimeB = LocalDateTime.of(2000, 1, 1, 00, 59, 59, 999);
    * assertThat(localDateTimeA).isEqualToIgnoringMinutes(localDateTimeB);
    * </pre>
    * 
@@ -537,13 +537,13 @@ public class LocalDateTimeAssert extends AbstractAssert<LocalDateTimeAssert, Loc
    * 
    * <pre>
    * // successfull assertions
-   * LocalDateTime localDateTime1 = new LocalDateTime(2000, 1, 1, 23, 59, 59, 999);
-   * LocalDateTime localDateTime2 = new LocalDateTime(2000, 1, 1, 00, 00, 00, 000);
+   * LocalDateTime localDateTime1 = LocalDateTime.of(2000, 1, 1, 23, 59, 59, 999);
+   * LocalDateTime localDateTime2 = LocalDateTime.of(2000, 1, 1, 00, 00, 00, 000);
    * assertThat(localDateTime1).isEqualToIgnoringHours(localDateTime2);
    * 
    * // failing assertions (even if time difference is only 1ms)
-   * LocalDateTime localDateTimeA = new LocalDateTime(2000, 1, 2, 00, 00, 00, 000);
-   * LocalDateTime localDateTimeB = new LocalDateTime(2000, 1, 1, 23, 59, 59, 999);
+   * LocalDateTime localDateTimeA = LocalDateTime.of(2000, 1, 2, 00, 00, 00, 000);
+   * LocalDateTime localDateTimeB = LocalDateTime.of(2000, 1, 1, 23, 59, 59, 999);
    * assertThat(localDateTimeA).isEqualToIgnoringHours(localDateTimeB);
    * </pre>
    * 

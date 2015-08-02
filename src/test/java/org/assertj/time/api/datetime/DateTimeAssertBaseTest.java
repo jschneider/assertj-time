@@ -12,12 +12,14 @@
  */
 package org.assertj.time.api.datetime;
 
-import static org.junit.Assume.assumeTrue;
-
-import org.assertj.time.api.ZonedDateTimeAssert;
 import org.assertj.time.api.JodaTimeBaseTest;
-import org.joda.time.DateTime;
-import org.junit.experimental.theories.DataPoint;
+import org.assertj.time.api.ZonedDateTimeAssert;
+import org.junit.experimental.theories.*;
+
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+
+import static org.junit.Assume.*;
 
 
 /**
@@ -29,19 +31,19 @@ import org.junit.experimental.theories.DataPoint;
 public class DateTimeAssertBaseTest extends JodaTimeBaseTest {
 
   @DataPoint
-  public static DateTime dateTime1 = new DateTime(2000, 12, 14, 0, 0);
+  public static ZonedDateTime dateTime1 = ZonedDateTime.of(2000, 12, 14, 0, 00, 0, 0, ZoneId.of("Africa/Banjul"));
   @DataPoint
-  public static DateTime dateTime2 = new DateTime(2000, 12, 13, 23, 59, 59, 999);
+  public static ZonedDateTime dateTime2 = ZonedDateTime.of(2000, 12, 13, 23, 59, 59, 999000000, ZoneId.of("Africa/Banjul"));
   @DataPoint
-  public static DateTime dateTime3 = new DateTime(2000, 12, 14, 0, 0, 0, 1);
+  public static ZonedDateTime dateTime3 = ZonedDateTime.of(2000, 12, 14, 0, 0, 0, 1000000, ZoneId.of("Africa/Banjul"));
   @DataPoint
-  public static DateTime dateTime4 = new DateTime(2000, 12, 14, 22, 15, 15, 875);
+  public static ZonedDateTime dateTime4 = ZonedDateTime.of(2000, 12, 14, 22, 15, 15, 875000000, ZoneId.of("Africa/Banjul"));
   @DataPoint
-  public static DateTime dateTime5 = new DateTime(2000, 12, 14, 22, 15, 15, 874);
+  public static ZonedDateTime dateTime5 = ZonedDateTime.of(2000, 12, 14, 22, 15, 15, 874000000, ZoneId.of("Africa/Banjul"));
   @DataPoint
-  public static DateTime dateTime6 = new DateTime(2000, 12, 14, 22, 15, 15, 876);
+  public static ZonedDateTime dateTime6 = ZonedDateTime.of(2000, 12, 14, 22, 15, 15, 876000000, ZoneId.of("Africa/Banjul"));
 
-  protected static void testAssumptions(DateTime reference, DateTime dateBefore, DateTime dateAfter) {
+  protected static void testAssumptions(ZonedDateTime reference, ZonedDateTime dateBefore, ZonedDateTime dateAfter) {
     assumeTrue(dateBefore.isBefore(reference));
     assumeTrue(dateAfter.isAfter(reference));
   }
